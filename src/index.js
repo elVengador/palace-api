@@ -9,4 +9,4 @@ app.use('/graphql', graphqlHTTPConfig);
 
 app.get('/', (req, res) => res.send('🚀'))
 
-app.listen(4000, () => console.log('Running api on port 4000'));
+app.listen(4000, () => console.log('>. Running api on port 4000'));
