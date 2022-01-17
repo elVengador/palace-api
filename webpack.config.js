@@ -24,5 +24,6 @@ module.exports = {
     plugins: [
         new NodemonPlugin(),
         // new BundleAnalyzerPlugin()
-    ]
+    ],
+    devtool: 'inline-source-map',
 }
