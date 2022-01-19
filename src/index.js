@@ -1,11 +1,15 @@
 import * as express from 'express';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 
 import * as expressMiddlewares from './core/src/infraestructure/express/middlewares';
 import { graphqlHTTPConfig } from './infraestructure/graphql';
 import './core/src/infraestructure/mongo-db';
 
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.use(cors());
 app.use(expressMiddlewares.auth);
