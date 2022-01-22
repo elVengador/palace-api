@@ -5,7 +5,6 @@ import { getUserIdFromToken } from '../../core/src/application/utils/auth.util';
 
 export const addTag = async ({ addTagInput }, req) => {
     try {
-        if (!req.app.get('userId')) { return errorUtil.BAD_REQUEST() }
         const newTag = Tag()
         newTag.userId = getUserIdFromToken(req)
         newTag.value = addTagInput.value
@@ -15,9 +14,13 @@ export const addTag = async ({ addTagInput }, req) => {
     }
 }
 
-export const getTagsByUser = async ({ userId }) => {
+export const getTagsByUser = async (parent, { getTagsByUser }, context) => {
     try {
-        return await tagRepository.getTagsByUser({ userId })
+        const userId = context.userId
+        console.log('USER Id:', userId);
+        if (!userId) { return errorUtil.UNAUTHORIZED() }
+        const q = await tagRepository.getTagsByUser({ userId })
+        return q
     } catch (err) {
         console.log(err);
         return errorUtil.SERVER_ERROR()

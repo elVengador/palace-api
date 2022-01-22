@@ -2,8 +2,12 @@ const path = require('path');
 const NodemonPlugin = require('nodemon-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+// const {
+//     NODE_ENV = 'production',
+// } = process.env;
+
 const {
-    NODE_ENV = 'production',
+    NODE_ENV = 'development',
 } = process.env;
 
 module.exports = {
@@ -20,10 +24,17 @@ module.exports = {
     },
     resolve: {
         extensions: ['.ts', '.js'],
+        alias: {
+            graphql$: path.resolve(__dirname, './node_modules/graphql/index.js'),
+        },
     },
     plugins: [
         new NodemonPlugin(),
         // new BundleAnalyzerPlugin()
     ],
     devtool: 'inline-source-map',
+    optimization: {
+        minimize: false
+    },
+
 }

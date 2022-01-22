@@ -1,22 +1,3 @@
-import * as express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-
-import * as expressMiddlewares from './core/src/infraestructure/express/middlewares';
-import { graphqlHTTPConfig } from './infraestructure/graphql';
 import './core/src/infraestructure/mongo-db';
-
-const app = express();
-
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-
-app.use(cors());
-app.use(expressMiddlewares.auth);
-app.use('/graphql', graphqlHTTPConfig);
-
-app.get('/', (req, res) => res.send('🚀'))
-
-app.listen(4100, () => console.log('>. Running api on port 4100'));
-
-app.use(expressMiddlewares.error)
+import './core/src/infraestructure/redis';
+import './infraestructure/apollo';
