@@ -19,8 +19,12 @@ export const addTag = async (newTag) => {
 }
 
 export const updateTag = async ({ tagId, newTag }) => {
-    const tag = await collection(nameCollection).updateOne({ _id: new ObjectId(tagId) }, { $set: newTag })
-    return tag.matchedCount
+    const result = await collection(nameCollection).findOneAndUpdate(
+        { _id: new ObjectId(tagId) },
+        { $set: newTag },
+        { returnDocument: 'after' }
+    )
+    return result.value
 }
 
 export const removeTag = async ({ tagId }) => {
