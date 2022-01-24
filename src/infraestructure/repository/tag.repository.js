@@ -4,6 +4,10 @@ import { collection } from '../../core/src/infraestructure/mongo-db';
 
 const nameCollection = 'tags'
 
+export const getTagsById = async ({ tagId }) => {
+    return await collection(nameCollection).findOne({ _id: tagId })
+}
+
 export const getTagsByUser = async ({ userId }) => {
     const cursor = collection(nameCollection).find({ userId })
     return await cursor.toArray();

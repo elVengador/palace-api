@@ -22,7 +22,8 @@ export const tagQuerySchemas = `#graphql
 `
 
 export const tagMutationSchemas = `#graphql
-    addTag(addTagInput:AddTagInput):String
+    addTag(addTagInput:AddTagInput):Tag
+    # addTag2(addTagInput:AddTagInput):Tag
     updateTag(tagId:ID!,updateTagInput:UpdateTagInput!):Int
     # removeTag(tagId:ID!):Int
 `
