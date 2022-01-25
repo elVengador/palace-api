@@ -1,14 +1,17 @@
 import * as tagRepository from '../../infraestructure/repository/tag.repository';
 import * as errorUtil from '../../core/src/application/utils/error.util';
 import { Tag } from '../../domain/tag.entities';
-import { getUserIdFromToken } from '../../core/src/application/utils/auth.util';
 
-export const addTag = async ({ addTagInput }, req) => {
+export const addTag = async (parent, { addTagInput }, context) => {
     try {
+        const userId = context.userId
+        if (!userId) { return errorUtil.UNAUTHORIZED() }
+
         const newTag = Tag()
-        newTag.userId = getUserIdFromToken(req)
+        newTag.userId = userId
         newTag.value = addTagInput.value
-        return await tagRepository.addTag(newTag)
+        const tagId = await tagRepository.addTag(newTag)
+        return await tagRepository.getTagsById({ tagId })
     } catch (err) {
         return errorUtil.SERVER_ERROR()
     }
@@ -17,18 +20,19 @@ export const addTag = async ({ addTagInput }, req) => {
 export const getTagsByUser = async (parent, { getTagsByUser }, context) => {
     try {
         const userId = context.userId
-        console.log('USER Id:', userId);
         if (!userId) { return errorUtil.UNAUTHORIZED() }
-        const q = await tagRepository.getTagsByUser({ userId })
-        return q
+        return await tagRepository.getTagsByUser({ userId })
     } catch (err) {
         console.log(err);
         return errorUtil.SERVER_ERROR()
     }
 }
 
-export const updateTag = async ({ tagId, updateTagInput }) => {
+export const updateTag = async (parent, { tagId, updateTagInput }, context) => {
     try {
+        const userId = context.userId
+        if (!userId) { return errorUtil.UNAUTHORIZED() }
+
         const newTag = { ...updateTagInput }
         newTag.updateDate = new Date().toISOString()
         return await tagRepository.updateTag({ tagId, newTag })

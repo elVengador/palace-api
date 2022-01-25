@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-core';
 import { startApolloServer } from '../../core/src/infraestructure/apollo';
 import { coreMutationResolver, coreQueryResolver } from '../../core/src/infraestructure/apollo/resolvers';
 import { coreMutationSchemas, coreQuerySchemas, coreSchemas } from '../../core/src/infraestructure/apollo/schemas';
-import { tagQueryResolver } from './tags/tag.resolver';
+import { tagMutationResolver, tagQueryResolver } from './tags/tag.resolver';
 import { tagMutationSchemas, tagQuerySchemas, tagSchemas } from './tags/tag.schema';
 
 const querySchemas = `
@@ -31,6 +31,7 @@ const resolvers = {
     },
     Mutation: {
         ...coreMutationResolver,
+        ...tagMutationResolver
     }
 };
 
