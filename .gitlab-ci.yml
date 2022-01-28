@@ -33,7 +33,7 @@ before_script:
   ##
   ## Use ssh-keyscan to scan the keys of your private server.
   ##
-  - cat gitlab-known-hosts >> ~/.ssh/known_hosts
+  # - cat gitlab-known-hosts >> ~/.ssh/known_hosts
 
   ##
   ## Use ssh-keyscan to scan the keys of your private server. Replace gitlab.com
