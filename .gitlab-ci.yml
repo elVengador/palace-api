@@ -20,10 +20,20 @@ before_script:
   - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
 
   ##
-  ## Create the SSH directory and give it the right permissions
+  ## Add the SSH key stored in GIT_SSH_PRIV_KEY variable (added by ev)
+  ##
+  - ssh-add <(echo "$GIT_SSH_PRIV_KEY")
+
+  ##
+  ## Create the SSH directory and give it the right permissions (added by ev)
   ##
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
+
+  ##
+  ## Use ssh-keyscan to scan the keys of your private server.
+  ##
+  - cat gitlab-known-hosts >> ~/.ssh/known_hosts
 
   ##
   ## Use ssh-keyscan to scan the keys of your private server. Replace gitlab.com
