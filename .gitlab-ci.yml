@@ -22,7 +22,7 @@ before_script:
   ##
   ## Add the SSH key stored in GIT_SSH_PRIV_KEY variable (added by ev)
   ##
-  - ssh-add <(echo "$GIT_SSH_PRIV_KEY")
+  # - ssh-add <(echo "$GIT_SSH_PRIV_KEY")
 
   ##
   ## Create the SSH directory and give it the right permissions (added by ev)
@@ -45,6 +45,7 @@ before_script:
 variables:
   PROJECT: notes-api
   REGISTRY: registry.gitlab.com/jimynicanor1001
+  GIT_SUBMODULE_STRATEGY: recursive
 stages:
   - docker
   - deploy
