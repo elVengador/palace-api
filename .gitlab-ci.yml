@@ -64,7 +64,7 @@ deploy-job:
   script: 
     - >
       cmd="
-      mkdir -p  $PWD/projects/$PROJECT/data && cd $PWD/projects/$PROJECT;
+      mkdir -p  ~/projects/$PROJECT/data && cd ~/projects/$PROJECT;
       echo $PWD;
       docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY;
       docker pull $REGISTRY/$PROJECT;
@@ -72,6 +72,6 @@ deploy-job:
 
       docker run -d -p $DB_REDIS_PORT:6379 redis:6.2.6;
       docker run -d -e MONGO_INITDB_ROOT_USERNAME=$DB_MONGODB_USER -e MONGO_INITDB_ROOT_PASSWORD=$DB_MONGODB_PASS -v $PWD/data:/data/db -v $PWD/data/logs:/var/logs/mongodb/ -p $DB_MONGODB_PORT:27017 mongo:5.0;
-      docker run -d --name $PROJECT -p $API_PORT:4100 $REGISTRY/$PROJECT;
+      docker run -d --name $PROJECT -e DB_REDIS_HOST=$DB_REDIS_HOST -e DB_REDIS_PORT=$DB_REDIS_PORT -e DB_REDIS_PASS=$DB_REDIS_PASS -p $API_PORT:4100 $REGISTRY/$PROJECT;
       "
     - ssh -tt el_vengador_king@$SERVER "$cmd"
