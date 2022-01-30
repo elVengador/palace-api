@@ -70,12 +70,12 @@ deploy-job:
 
       docker ps -f name=$PROJECT && docker rm -f $PROJECT;
       docker run -d --name $PROJECT \
-        -e DB_MONGODB_HOST=$DB_MONGODB_HOST \
+        -e DB_MONGODB_HOST=$CONTAINER_MONGODB_NAME \
         -e DB_MONGODB_PORT=$DB_MONGODB_PORT \
         -e DB_MONGODB_USER=$DB_MONGODB_USER \
         -e DB_MONGODB_PASS=$DB_MONGODB_PASS \
         -e DB_MONGODB_NAME=$DB_MONGODB_NAME \
-        -e DB_REDIS_HOST=$DB_REDIS_HOST \
+        -e DB_REDIS_HOST=$CONTAINER_REDIS_NAME \
         -e DB_REDIS_PORT=$DB_REDIS_PORT \
         -e DB_REDIS_PASS=$DB_REDIS_PASS \
         -e ACCESS_TOKEN_SECRET=$ACCESS_TOKEN_SECRET \
