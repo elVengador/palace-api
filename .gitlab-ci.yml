@@ -64,8 +64,9 @@ deploy-job:
   script: 
     - >
       cmd="
+      echo '---->' $PWD;
       mkdir -p  ~/projects/$PROJECT/data && cd ~/projects/$PROJECT;
-      echo $PWD;
+      echo '---->' $PWD;
       docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY;
       docker pull $REGISTRY/$PROJECT;
 
@@ -73,7 +74,8 @@ deploy-job:
       docker ps -f name=palace-mongodb && docker rm -f palace-mongodb;
       docker ps -f name=$PROJECT && docker rm -f $PROJECT;
 
-      docker run -d --name palace-redis -p $DB_REDIS_PORT:6379 redis:6.2.6;
+      docker run -d --name palace-redis \
+        -p $DB_REDIS_PORT:6379 redis:6.2.6;
       docker run -d --name palace-mongodb \
         -e MONGO_INITDB_ROOT_USERNAME=$DB_MONGODB_USER \
         -e MONGO_INITDB_ROOT_PASSWORD=$DB_MONGODB_PASS \
