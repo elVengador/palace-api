@@ -81,6 +81,6 @@ deploy-job:
         -e ACCESS_TOKEN_SECRET=$ACCESS_TOKEN_SECRET \
         -e REFRESH_TOKEN_SECRET=$REFRESH_TOKEN_SECRET \
         -p $API_PORT:4100 $REGISTRY/$PROJECT;
-      docker network connect $NETWORK_NAME $CONTAINER_API_NAME;
+      docker network connect $NETWORK_NAME $PROJECT;
       "
     - ssh -tt el_vengador_king@$SERVER "$cmd"
