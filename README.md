@@ -11,10 +11,6 @@ docker run -d -e MONGO_INITDB_ROOT_USERNAME=dev -e MONGO_INITDB_ROOT_PASSWORD=12
 ```
 docker run -d -p 5063:6379 redis:6.2.6
 ```
-- Old command dont use it
-```
-docker run -d -v $PWD/config/redis:/usr/local/etc/redis -p 5063:6379 redis:6.2.6 redis-server /usr/local/etc/redis/redis.conf
-```
 - Then execute
 ```
 yarn dev
