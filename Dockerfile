@@ -7,6 +7,6 @@ RUN yarn build
 
 FROM node:alpine
 WORKDIR /app
-COPY --from=builder /app/dist /app/dist/
+COPY --from=builder /app/build /app/build/
 EXPOSE 4100
-CMD ["node", "/app/dist/index.js"]
+CMD ["node", "/app/build/index.js"]
