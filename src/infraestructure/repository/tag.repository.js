@@ -4,7 +4,7 @@ import { collection } from '../../core/src/infraestructure/mongo-db';
 
 const nameCollection = 'tags'
 
-export const getTagsById = async ({ tagId }) => {
+export const getTagById = async ({ tagId }) => {
     return await collection(nameCollection).findOne({ _id: tagId })
 }
 
@@ -27,7 +27,7 @@ export const updateTag = async ({ tagId, newTag }) => {
     return result.value
 }
 
-export const removeTag = async ({ tagId }) => {
-    const tag = await collection(nameCollection).deleteOne({ _id: new ObjectId(tagId) })
-    return tag.deletedCount
-}
+// export const removeTag = async ({ tagId }) => {
+//     const tag = await collection(nameCollection).deleteOne({ _id: new ObjectId(tagId) })
+//     return tag.deletedCount
+// }

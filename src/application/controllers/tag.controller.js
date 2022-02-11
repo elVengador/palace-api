@@ -11,7 +11,7 @@ export const addTag = async (parent, { addTagInput }, context) => {
         newTag.userId = userId
         newTag.value = addTagInput.value
         const tagId = await tagRepository.addTag(newTag)
-        return await tagRepository.getTagsById({ tagId })
+        return await tagRepository.getTagById({ tagId })
     } catch (err) {
         return errorUtil.SERVER_ERROR()
     }

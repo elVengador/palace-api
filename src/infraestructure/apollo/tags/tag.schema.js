@@ -1,6 +1,6 @@
 export const tagSchemas = `#graphql
     type Tag {
-        _id:ID!
+        _id: ID!
         userId: ID!
         value: String!
         state: String!
