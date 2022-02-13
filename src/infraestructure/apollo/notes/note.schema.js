@@ -9,9 +9,9 @@ export const noteSchema = `#graphql
         creationUser: ID!
     }
 
-    type GetNotesByTagOutput {
+    type NoteOutput {
         _id: ID!
-        tags:[Tag]
+        tags:[Tag!]!
         value: String!
         state: String!
         updateDate: String!
@@ -30,11 +30,12 @@ export const noteSchema = `#graphql
 `
 
 export const noteQuerySchemas = `#graphql
-    getNotesByTag(tagId:ID!):[GetNotesByTagOutput]
+    getNotesByUser:[NoteOutput]
+    getNotesByTag(tagId:ID!):[NoteOutput]
 `
 
 export const noteMutationSchemas = `#graphql
-    addNote(addNoteInput:AddNoteInput):Note
+    addNote(addNoteInput:AddNoteInput):NoteOutput
     updateNote(noteId:ID!,updateNoteInput:UpdateNoteInput):Note
     # removeNote(idNote:ID!):
 `

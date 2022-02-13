@@ -15,3 +15,8 @@ docker run -d -p 5063:6379 redis:6.2.6
 ```
 yarn dev
 ```
+
+- To start container
+```
+docker start 0e0b05fb4431 1acd50a2e0f0
+```

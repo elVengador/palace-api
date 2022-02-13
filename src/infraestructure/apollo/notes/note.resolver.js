@@ -6,5 +6,6 @@ export const noteMutationResolver = {
 }
 
 export const noteQueryResolver = {
+    getNotesByUser: noteController.getNotesByUser,
     getNotesByTag: noteController.getNotesByTag
 }

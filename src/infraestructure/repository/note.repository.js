@@ -9,6 +9,7 @@ export const getNotesById = async ({ noteId }) => {
 }
 
 export const getNotesByTag = async ({ tagId }) => {
+    console.log("GNBT:", tagId);
     const cursor = collection(nameCollection).find({ tagId })
     return await cursor.toArray();
 }
