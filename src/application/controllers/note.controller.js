@@ -51,20 +51,20 @@ export const getNotesByTag = async (parent, { tagId }, context) => {
     }
 }
 
-export const updateTag = async (parent, { noteId, updateNoteInput }, context) => {
+export const updateNote = async (parent, { noteId, updateNoteInput }, context) => {
     try {
         const userId = context.userId
         if (!userId) { return errorUtil.UNAUTHORIZED() }
 
         const newNote = { ...updateNoteInput }
         newNote.updateDate = new Date().toISOString()
-        return await noteRepository.updateNote({ noteId, newNote })
+        const noteUpdated = await noteRepository.updateNote({ noteId, newNote })
+        return await resolveTagInNote(noteUpdated)
     } catch (err) {
         return errorUtil.SERVER_ERROR()
     }
 }
 export const resolveTagInNote = async (note) => {
-    console.log('note:', note);
     const tag = await tagRepository.getTagById({ tagId: new ObjectId(note.tagId) })
     return { ...note, tags: [tag] }
 }

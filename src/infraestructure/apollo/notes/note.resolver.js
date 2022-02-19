@@ -2,7 +2,7 @@ import * as noteController from '../../../application/controllers/note.controlle
 
 export const noteMutationResolver = {
     addNote: noteController.addNote,
-    updateNote: noteController.updateTag
+    updateNote: noteController.updateNote
 }
 
 export const noteQueryResolver = {

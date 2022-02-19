@@ -36,6 +36,6 @@ export const noteQuerySchemas = `#graphql
 
 export const noteMutationSchemas = `#graphql
     addNote(addNoteInput:AddNoteInput):NoteOutput
-    updateNote(noteId:ID!,updateNoteInput:UpdateNoteInput):Note
+    updateNote(noteId:ID!,updateNoteInput:UpdateNoteInput):NoteOutput
     # removeNote(idNote:ID!):
 `
