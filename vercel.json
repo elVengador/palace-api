@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "installCommand": "npm run vercel-install",
   "builds": [
     {
       "src": "build/index.js",
