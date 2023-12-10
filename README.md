@@ -35,7 +35,8 @@ docker run -d -e MONGO_INITDB_ROOT_USERNAME=dev -e MONGO_INITDB_ROOT_PASSWORD=12
 
 - run a Redis DB
 ```bash
-docker run -d -p 5063:6379 redis:6.2.6
+docker run -d -p 5063:6379 redis:6.2.6 --requirepass pass132124325ed
+
 ```
 
 - get submodule files
