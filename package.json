@@ -8,7 +8,7 @@
     "dev": "webpack --watch --config webpack.dev.js",
     "start": "node ./src",
     "build": "webpack --config webpack.prod.js",
-    "vercel-install": "./vercel-submodule-workaround.sh && yarn"
+    "vercel-install": "ls && ./vercel-submodule-workaround.sh && yarn"
   },
   "keywords": [],
   "author": "",
